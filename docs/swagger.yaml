@@ -1,0 +1,220 @@
+basePath: /
+definitions:
+  domain.ColiformsData:
+    properties:
+      E_coli:
+        type: number
+      fecal:
+        type: number
+      total:
+        type: number
+    type: object
+  domain.WasteWaterData:
+    properties:
+      _id:
+        type: string
+      Ammonium:
+        type: number
+      BOD:
+        type: number
+      CDOM:
+        type: number
+      COD:
+        type: number
+      Chloride:
+        type: number
+      Coliforms:
+        $ref: '#/definitions/domain.ColiformsData'
+      Crude_Oils:
+        type: number
+      DOC:
+        type: number
+      Dissolved_Oxygen:
+        type: number
+      EC_Salinity_TDS:
+        type: number
+      Nitrate:
+        type: number
+      ORP_REDOX:
+        type: number
+      Optical_Brighteners:
+        type: number
+      Pressure:
+        type: number
+      Refined_Oils:
+        type: number
+      TOC:
+        type: number
+      Temperature:
+        type: number
+      Tryptophan:
+        type: number
+      Turbidity:
+        type: number
+      pH:
+        type: number
+      timestamp:
+        type: string
+    type: object
+  rest.ResponseError:
+    properties:
+      message:
+        type: string
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: antscpk06@gmail.com
+    name: MRT WW Support
+  description: This is an API Document for MRT Waste Water
+  license:
+    name: GPL-3.0 License
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+  title: MRT Waste Water API
+  version: "1.0"
+paths:
+  /waste-water:
+    get:
+      consumes:
+      - application/json
+      description: get all waste water data
+      parameters:
+      - description: Page number
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Waste water data
+          schema:
+            items:
+              $ref: '#/definitions/domain.WasteWaterData'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: get all waste water data
+      tags:
+      - waste water
+    post:
+      consumes:
+      - application/json
+      description: create waste water data
+      parameters:
+      - description: waste water data
+        in: body
+        name: waste_water
+        required: true
+        schema:
+          $ref: '#/definitions/domain.WasteWaterData'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.WasteWaterData'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: create waste water data
+      tags:
+      - waste water
+  /waste-water/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete waste water data
+      parameters:
+      - description: Waste water data ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: delete waste water data
+      tags:
+      - waste water
+    get:
+      consumes:
+      - application/json
+      description: get waste water data by id
+      parameters:
+      - description: Waste water data ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.WasteWaterData'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: get waste water data by id
+      tags:
+      - waste water
+    put:
+      consumes:
+      - application/json
+      description: update waste water data
+      parameters:
+      - description: waste water data
+        in: body
+        name: waste_water
+        required: true
+        schema:
+          $ref: '#/definitions/domain.WasteWaterData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.WasteWaterData'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: update waste water data
+      tags:
+      - waste water
+swagger: "2.0"
