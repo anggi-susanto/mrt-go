@@ -33,6 +33,8 @@ func main() {
 			Uri:                  "mongodb://localhost:27017",
 			Database:             "mrt",
 			WasteWaterCollection: "waste_water",
+			DeviceCollection:     "devices",
+			SensorCollection:     "sensors",
 		},
 	}
 

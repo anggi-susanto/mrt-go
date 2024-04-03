@@ -9,6 +9,34 @@ definitions:
       total:
         type: number
     type: object
+  domain.Device:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  domain.Sensor:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      device_id:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
   domain.WasteWaterData:
     properties:
       _id:
@@ -73,6 +101,294 @@ info:
   title: MRT Waste Water API
   version: "1.0"
 paths:
+  /device:
+    get:
+      consumes:
+      - application/json
+      description: get all device data
+      parameters:
+      - description: Page number
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Device data
+          schema:
+            items:
+              $ref: '#/definitions/domain.Device'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: get all device data
+      tags:
+      - device
+    post:
+      consumes:
+      - application/json
+      description: create device data
+      parameters:
+      - description: device data
+        in: body
+        name: waste_water
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Device'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Device'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: create device data
+      tags:
+      - device
+  /device/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete device data
+      parameters:
+      - description: Device data ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: delete device data
+      tags:
+      - device
+    get:
+      consumes:
+      - application/json
+      description: get device data by id
+      parameters:
+      - description: Device data ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Device'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: get device data by id
+      tags:
+      - device
+    put:
+      consumes:
+      - application/json
+      description: update device data
+      parameters:
+      - description: device data
+        in: body
+        name: waste_water
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Device'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Device'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: update device data
+      tags:
+      - device
+  /sensor:
+    get:
+      consumes:
+      - application/json
+      description: get all sensor data
+      parameters:
+      - description: Page number
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Sensor data
+          schema:
+            items:
+              $ref: '#/definitions/domain.Sensor'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: get all sensor data
+      tags:
+      - sensor
+    post:
+      consumes:
+      - application/json
+      description: create sensor data
+      parameters:
+      - description: sensor data
+        in: body
+        name: waste_water
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Sensor'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Sensor'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: create sensor data
+      tags:
+      - sensor
+  /sensor/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete sensor data
+      parameters:
+      - description: Sensor data ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: delete sensor data
+      tags:
+      - sensor
+    get:
+      consumes:
+      - application/json
+      description: get sensor data by id
+      parameters:
+      - description: Sensor data ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Sensor'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: get sensor data by id
+      tags:
+      - sensor
+    put:
+      consumes:
+      - application/json
+      description: update sensor data
+      parameters:
+      - description: sensor data
+        in: body
+        name: waste_water
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Sensor'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Sensor'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ResponseError'
+      summary: update sensor data
+      tags:
+      - sensor
   /waste-water:
     get:
       consumes:

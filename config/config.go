@@ -8,4 +8,6 @@ type MongoConfig struct {
 	Uri                  string
 	Database             string
 	WasteWaterCollection string
+	DeviceCollection     string
+	SensorCollection     string
 }
