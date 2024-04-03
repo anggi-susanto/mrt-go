@@ -3,7 +3,7 @@ package wastewater
 import (
 	"context"
 
-	"github.org/anggi-susanto/mrt-go/domain"
+	"github.com/anggi-susanto/mrt-go/domain"
 )
 
 // WasteWaterRepositoryInterface is the interface that wraps the Create, GetAll, GetByID, Update, and Delete methods.
@@ -66,4 +66,13 @@ func (s *Service) GetByID(ctx context.Context, id string) (*domain.WasteWaterDat
 // Returns an error if there was a problem deleting the data.
 func (s *Service) Delete(ctx context.Context, id string) error {
 	return s.wasteWaterRepository.Delete(ctx, id)
+}
+
+// Update updates a WasteWaterData.
+//
+// ctx - context.Context for the operation.
+// w - pointer to domain.WasteWaterData representing the data to be updated.
+// Returns an error if there was a problem updating the data.
+func (s *Service) Update(ctx context.Context, w *domain.WasteWaterData) error {
+	return s.wasteWaterRepository.Update(ctx, w)
 }

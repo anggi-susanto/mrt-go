@@ -5,15 +5,15 @@ import (
 
 	"github.com/gofiber/swagger"
 
+	"github.com/anggi-susanto/mrt-go/config"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/sirupsen/logrus"
-	"github.org/anggi-susanto/mrt-go/config"
 
-	_ "github.org/anggi-susanto/mrt-go/docs"
-	mongoRepo "github.org/anggi-susanto/mrt-go/internal/repository/mongo"
-	"github.org/anggi-susanto/mrt-go/internal/rest"
+	_ "github.com/anggi-susanto/mrt-go/docs"
+	mongoRepo "github.com/anggi-susanto/mrt-go/internal/repository/mongo"
+	"github.com/anggi-susanto/mrt-go/internal/rest"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )

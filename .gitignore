@@ -24,3 +24,4 @@ tmp/
 build/
 vendor/
 bin/*
+.env

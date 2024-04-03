@@ -3,8 +3,8 @@ package rest
 import (
 	"context"
 
+	"github.com/anggi-susanto/mrt-go/domain"
 	"github.com/gofiber/fiber/v2"
-	"github.org/anggi-susanto/mrt-go/domain"
 )
 
 // ResponseError represents an error response

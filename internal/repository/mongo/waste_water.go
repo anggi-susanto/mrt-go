@@ -3,9 +3,9 @@ package mongo
 import (
 	"context"
 
+	"github.com/anggi-susanto/mrt-go/config"
+	"github.com/anggi-susanto/mrt-go/domain"
 	"github.com/sirupsen/logrus"
-	"github.org/anggi-susanto/mrt-go/config"
-	"github.org/anggi-susanto/mrt-go/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
