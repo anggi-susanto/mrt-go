@@ -66,6 +66,12 @@ func main() {
 	wasteWaterRepo := mongoRepo.NewWasteWaterRepository(mongoClient, &config.MongoConfig)
 	rest.NewWasteWaterHandler(app, wasteWaterRepo)
 
+	deviceRepo := mongoRepo.NewDeviceRepository(mongoClient, &config.MongoConfig)
+	rest.NewDeviceHandler(app, deviceRepo)
+
+	sensorRepo := mongoRepo.NewSensorRepository(mongoClient, &config.MongoConfig)
+	rest.NewSensorHandler(app, sensorRepo)
+
 	logrus.Fatal(app.Listen(":3000"))
 
 }
