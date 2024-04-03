@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/gofiber/swagger"
 
@@ -31,14 +30,13 @@ import (
 func main() {
 	config := config.Config{
 		MongoConfig: config.MongoConfig{
-			Uri:                  "mongodb://mongodb:27017",
+			Uri:                  "mongodb://localhost:27017",
 			Database:             "mrt",
 			WasteWaterCollection: "waste_water",
 		},
 	}
 
 	mongoClient, err := mongo.Connect(context.Background(), options.Client().ApplyURI(config.MongoConfig.Uri))
-	fmt.Println(mongoClient.Ping(context.Background(), nil))
 	if err != nil {
 		logrus.Fatal(err)
 	}

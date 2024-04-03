@@ -8,7 +8,7 @@ import (
 
 // WasteWaterRepositoryInterface is the interface that wraps the Create, GetAll, GetByID, Update, and Delete methods.
 type WasteWaterRepositoryInterface interface {
-	Create(ctx context.Context, w *domain.WasteWaterData) error
+	Create(ctx context.Context, w *domain.WastewaterDataRequest) error
 	GetAll(ctx context.Context, page, limit int) ([]domain.WasteWaterData, error)
 	GetByID(ctx context.Context, id string) (*domain.WasteWaterData, error)
 	Update(ctx context.Context, w *domain.WasteWaterData) error
@@ -38,7 +38,7 @@ func NewService(wasteWaterRepository WasteWaterRepositoryInterface) *Service {
 // ctx: The context.Context object for the request.
 // w: The waste water data to be created.
 // Returns an error if there was a problem creating the record.
-func (s *Service) Create(ctx context.Context, w *domain.WasteWaterData) error {
+func (s *Service) Create(ctx context.Context, w *domain.WastewaterDataRequest) error {
 	return s.wasteWaterRepository.Create(ctx, w)
 }
 

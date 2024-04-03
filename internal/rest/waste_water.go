@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/sirupsen/logrus"
 	"github.org/anggi-susanto/mrt-go/domain"
 )
 
@@ -15,7 +14,7 @@ type ResponseError struct {
 
 // WasteWaterServices is the interface that wraps the Create, GetAll, GetByID, Update, and Delete methods.
 type WasteWaterServices interface {
-	Create(ctx context.Context, w *domain.WasteWaterData) error
+	Create(ctx context.Context, w *domain.WastewaterDataRequest) error
 	GetAll(ctx context.Context, page, limit int) ([]domain.WasteWaterData, error)
 	GetByID(ctx context.Context, id string) (*domain.WasteWaterData, error)
 	Update(ctx context.Context, w *domain.WasteWaterData) error
@@ -59,9 +58,8 @@ func NewWasteWaterHandler(app *fiber.App, service WasteWaterServices) {
 // @Failure 500 {object} ResponseError
 // @Router /waste-water [post]
 func (h *WasteWaterHandler) Create(ctx *fiber.Ctx) error {
-	w := &domain.WasteWaterData{}
+	w := &domain.WastewaterDataRequest{}
 	if err := ctx.BodyParser(w); err != nil {
-		logrus.Error(err)
 		return ctx.Status(fiber.StatusBadRequest).JSON(ResponseError{Message: err.Error()})
 	}
 	if err := h.service.Create(ctx.Context(), w); err != nil {
@@ -111,6 +109,10 @@ func (h *WasteWaterHandler) GetByID(ctx *fiber.Ctx) error {
 	w, err := h.service.GetByID(ctx.Context(), id)
 	if err != nil {
 		return ctx.Status(fiber.StatusInternalServerError).JSON(ResponseError{Message: err.Error()})
+	}
+
+	if w == nil {
+		return ctx.Status(fiber.StatusNotFound).JSON(ResponseError{Message: "Data not found"})
 	}
 	return ctx.Status(fiber.StatusOK).JSON(w)
 }
