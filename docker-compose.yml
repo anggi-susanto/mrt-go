@@ -14,23 +14,6 @@ services:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
       - mosquitto_data:/mosquitto/data
       - mosquitto_log:/mosquitto/log
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    volumes:
-      - app_data:/app
-    environment:
-      - MONGO_HOST=mongodb
-      - MQTT_HOST=mqtt-broker
-    depends_on:
-      - mongodb
-      - mqtt-broker
-    links:
-      - mongodb
-      - mqtt-broker
 
   mongodb:
     image: mongo
